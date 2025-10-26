@@ -1,42 +1,221 @@
-#root {
-  max-width: 1280px;
+/* src/App.css */
+
+:root {
+  --primary-color: #4a90e2;
+  --secondary-color: #f7f7f7;
+  --text-color: #333;
+  --border-color: #ddd;
+  --completed-color: #d1e7dd;
+  --danger-color: #e57373;
+  --success-color: #66bb6a;
+}
+
+body {
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+  background-color: var(--secondary-color);
+  color: var(--text-color);
+  margin: 0;
+  padding: 0;
+}
+
+.app-container {
+  max-width: 800px;
   margin: 0 auto;
-  padding: 2rem;
+  padding: 20px;
+}
+
+/* --- Header --- */
+.header {
   text-align: center;
+  padding: 20px 0;
+  border-bottom: 2px solid var(--primary-color);
+  margin-bottom: 20px;
 }
 
-.logo {
-  height: 6em;
-  padding: 1.5em;
-  will-change: filter;
-  transition: filter 300ms;
-}
-.logo:hover {
-  filter: drop-shadow(0 0 2em #646cffaa);
-}
-.logo.react:hover {
-  filter: drop-shadow(0 0 2em #61dafbaa);
+.header h1 {
+  margin: 0;
+  color: var(--primary-color);
 }
 
-@keyframes logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
+/* --- Form Styles (TaskForm) --- */
+.task-form {
+  background: white;
+  padding: 20px;
+  border-radius: 8px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  margin-bottom: 30px;
 }
 
-@media (prefers-reduced-motion: no-preference) {
-  a:nth-of-type(2) .logo {
-    animation: logo-spin infinite 20s linear;
-  }
+.task-form input[type="text"],
+.task-form textarea {
+  width: 100%;
+  padding: 10px;
+  margin-bottom: 10px;
+  border: 1px solid var(--border-color);
+  border-radius: 4px;
+  box-sizing: border-box; /* Ensures padding doesn't widen the element */
 }
 
-.card {
-  padding: 2em;
+.task-form textarea {
+  resize: vertical;
+  min-height: 80px;
 }
 
-.read-the-docs {
-  color: #888;
+.task-form button {
+  padding: 10px 15px;
+  margin-right: 10px;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  font-weight: bold;
+  transition: background-color 0.2s;
+}
+
+.task-form button[type="submit"] {
+  background-color: var(--primary-color);
+  color: white;
+}
+
+.task-form button[type="submit"]:hover {
+  background-color: #3c78b8;
+}
+
+.task-form .cancel-btn {
+  background-color: #999;
+  color: white;
+}
+
+/* --- Task List Styles (TaskList) --- */
+.task-list h2 {
+    border-bottom: 1px solid var(--border-color);
+    padding-bottom: 10px;
+    margin-top: 0;
+}
+
+.task-list ul {
+  list-style: none;
+  padding: 0;
+}
+
+/* --- Task Item Styles (TaskItem) --- */
+.task-item {
+  display: flex;
+  align-items: center;
+  padding: 15px;
+  margin-bottom: 10px;
+  background: white;
+  border-radius: 4px;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.05);
+  transition: transform 0.1s;
+}
+
+.task-item:hover {
+  transform: translateY(-2px);
+}
+
+.task-item.completed {
+  background-color: var(--completed-color);
+}
+
+.task-item input[type="checkbox"] {
+  width: 20px;
+  height: 20px;
+  margin-right: 15px;
+  cursor: pointer;
+}
+
+.task-item .task-title-link {
+  flex-grow: 1;
+  text-decoration: none;
+  color: var(--text-color);
+  font-size: 1.1em;
+}
+
+.task-item.completed .task-title-link {
+  text-decoration: line-through;
+  color: #666;
+}
+
+.task-item .delete-btn {
+  background: none;
+  border: none;
+  color: var(--danger-color);
+  font-size: 1.5em;
+  cursor: pointer;
+  padding: 5px;
+  margin-left: 10px;
+  line-height: 1;
+}
+
+/* --- Task Detail Styles (TaskDetail) --- */
+.task-detail-page {
+  background: white;
+  padding: 30px;
+  border-radius: 8px;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+}
+
+.task-detail-page h2 {
+  color: var(--primary-color);
+  margin-top: 0;
+  margin-bottom: 15px;
+}
+
+.task-detail-page .status {
+  font-style: italic;
+  margin-bottom: 20px;
+}
+
+.task-detail-page .description {
+  background: var(--secondary-color);
+  padding: 15px;
+  border-left: 5px solid var(--primary-color);
+  margin-bottom: 30px;
+  white-space: pre-wrap; /* Preserve line breaks */
+}
+
+.task-detail-page .actions button {
+  padding: 10px 15px;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  font-weight: bold;
+  margin-right: 10px;
+  transition: opacity 0.2s;
+}
+
+.task-detail-page .actions .edit-btn {
+  background-color: var(--primary-color);
+  color: white;
+}
+
+.task-detail-page .actions .delete-btn {
+  background-color: var(--danger-color);
+  color: white;
+}
+
+.task-detail-page .actions .back-btn {
+  background-color: #6c757d;
+  color: white;
+}
+
+.task-detail-page .actions button:hover {
+  opacity: 0.9;
+}
+
+/* Media Query for smaller screens */
+@media (max-width: 600px) {
+    .app-container {
+        padding: 10px;
+    }
+    .task-item {
+        padding: 10px;
+    }
+    .task-detail-page .actions button {
+        margin-right: 5px;
+        margin-bottom: 10px;
+        display: block;
+        width: 100%;
+        box-sizing: border-box;
+    }
 }
