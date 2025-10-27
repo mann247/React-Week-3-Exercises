@@ -4,6 +4,10 @@ const TaskForm = ({ onSubmit, initialTask = {title: '', description: '' }, isNew
     const [task, setTask] = useState(initialTask);
     const {title, description} = task;
 
+    useEffect(() => {
+        setTask(initialTask);
+    }, [initialTask.id]);
+
     const handleChange = (e) => {
         const {name, value} = e.target;
         setTask((prevTask) => ({
