@@ -1,14 +1,20 @@
-import React from 'react';
-import Navbar from './components/Navbar'
+import {BrowserRouter as Router, Routes, Route} from 'react-router-dom';
+import SearchPage from './pages/SearchPage';
+import MovieDetail from './pages/MovieDetail';
 import './App.css';
 
-const App = () => {
+function App() {
   return (
-    <div className='app'>
-        <Navbar />
-        <main><MovieList /></main>
-    </div>
+    <Router>
+      <div className="app-container">
+        <Routes>
+          <Route path="/" element={<SearchPage />} />
+          {/* :imdbID is a route parameter for the unique movie ID */}
+          <Route path="/movie/:imdbID" element={<MovieDetail />} />
+        </Routes>
+      </div>
+    </Router>
   );
-};
+}
 
 export default App;
